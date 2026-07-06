@@ -517,11 +517,6 @@ ns.processSemanticsChunk = function (semanticsChunk, params, $wrapper, parent, m
     delete parent.readies;
   }
 
-  // Initialize description tooltips for any info-icon buttons that were just
-  // appended by the widgets processed in this chunk.
-  $wrapper.find?.('.h5peditor-field-description-icon[data-description]').each(function () {
-    ns.initDescriptionTooltip(this);
-  });
 };
 
 /**
@@ -1064,6 +1059,21 @@ ns.initDescriptionTooltip = function (button) {
   div.innerHTML = button.dataset.description;
   var text = div.textContent;
   H5P.Tooltip(button, { text });
+};
+
+/**
+ * Initialize description tooltips inside a widget root.
+ *
+ * @param {jQuery|HTMLElement} root Widget root element
+ */
+ns.initDescriptionTooltips = function (root) {
+  var selector = '.h5peditor-field-description-icon[data-description]';
+  ns.$(root)
+    .find(selector)
+    .addBack(selector)
+    .each(function () {
+      ns.initDescriptionTooltip(this);
+    });
 };
 
 /**

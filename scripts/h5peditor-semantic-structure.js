@@ -202,6 +202,7 @@ H5PEditor.SemanticStructure = (function ($) {
       changeWidget(widgets[0].name);
 
       $wrapper.appendTo($container);
+      H5PEditor.initDescriptionTooltips($wrapper);
     };
 
     /**
